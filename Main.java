@@ -20,37 +20,30 @@ public class Main
 	int nextAvailTimeA= 0;
 	int nextAvailTimeB= 0;
 		
-	//dequeue each customer and calculate his wait-time.
-	//while there are still customers in the queue
-	{
+	while (!q.isEmpty()) {
 	     //Get next customer's data from the queue
    
 	     //Choose the representative with the closest nextAvailTime
 	     int waitTime = 0;
              //decide which rep to use
-	     if(nextAvailTimeA <= nextAvailTimeB) 
-	     {
+	     if(nextAvailTimeA <= nextAvailTimeB) {
 		//calculate wait time for this customer
 		//calculate the nextAvailTimeB
                 //keep in mind that in some cases, the customer may arrive AFTER the nextAvailTime
 
-	     }
-	     else // if nextAvailTimeB < nextAvailTimeA
-             {
+	     } else {
 		//calculate wait time for this customer
 		//calculate the nextAvailTimeA
                 //keep in mind that in some cases, the customer may arrive AFTER the nextAvailTime
-             }
-
-             totalWaitTime += waitTime;
-         }
-         System.out.println(totalWaitTime);
+          }     
+          totalWaitTime += waitTime;
+          System.out.println(totalWaitTime);
      }
  
      public static Queue parseToQueue(String fileName) throws NumberFormatException, 
                                                               IOException 
      {
-        Queue queue = new LinkedListQueue<CustomerRecord>(); //change to your Queue
+        Queue queue = new LinkedListQueue<CustomerRecord>();
         File file = new File(fileName); 
         BufferedReader br = new BufferedReader(new FileReader(file)); 
         String line; 
