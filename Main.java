@@ -19,31 +19,34 @@ public class Main
 	int totalWaitTime = 0;
 	int nextAvailTimeA= 0;
 	int nextAvailTimeB= 0;
-		
+     
 	while (!q.isEmpty()) {
-	     //Get next customer's data from the queue
-   
-	     //Choose the representative with the closest nextAvailTime
+	     
+          CustomerRecord customer = (CustomerRecord) q.dequeue();
+	     
 	     int waitTime = 0;
-             //decide which rep to use
-	     if(nextAvailTimeA <= nextAvailTimeB) {
-		//calculate wait time for this customer
-		//calculate the nextAvailTimeB
-                //keep in mind that in some cases, the customer may arrive AFTER the nextAvailTime
 
+	     if(nextAvailTimeA <= nextAvailTimeB) {
+               if (nextAvailTimeA > customer.getArrivalTime()) {
+                    waitTime += nextAvailTimeA - customer.getArrivalTime();
+               }
+               nextAvailTimeA = customer.getArrivalTime() + waitTime + customer.getHelpTime();
 	     } else {
-		//calculate wait time for this customer
-		//calculate the nextAvailTimeA
-                //keep in mind that in some cases, the customer may arrive AFTER the nextAvailTime
+		     if (nextAvailTimeB > customer.getArrivalTime()) {
+                    waitTime += nextAvailTimeB - customer.getArrivalTime();
+               }
+               nextAvailTimeB = customer.getArrivalTime() + waitTime + customer.getHelpTime();
           }     
           totalWaitTime += waitTime;
           System.out.println(totalWaitTime);
      }
- 
+     
+     }
+
      public static Queue parseToQueue(String fileName) throws NumberFormatException, 
                                                               IOException 
      {
-        Queue queue = new LinkedListQueue<CustomerRecord>();
+        Queue queue = new CustomerQueue();
         File file = new File(fileName); 
         BufferedReader br = new BufferedReader(new FileReader(file)); 
         String line; 

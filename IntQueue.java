@@ -1,2 +1,2 @@
-public interface IntQueue extends Queue<Integer>{
+public interface IntQueue extends Queue<CustomerRecord>{
 }

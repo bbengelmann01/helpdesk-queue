@@ -2,20 +2,20 @@
 
 class IntLinkedNode //internal class for Linked nodes
 {
-    public Integer value;
+    public CustomerRecord value;
     public IntLinkedNode next;
 
-    public IntLinkedNode(int val)
+    public IntLinkedNode(CustomerRecord val)
     {
         this.value = val;
         this.next = null;
     }
 
-    public void setValue(int val)
+    public void setValue(CustomerRecord val)
     {
         this.value = val;
     }
-    public Integer getValue()
+    public CustomerRecord getValue()
     {
         return value;
     }
@@ -31,12 +31,12 @@ class IntLinkedNode //internal class for Linked nodes
     }
 }
 
-public class IntLinkedQueue implements IntQueue {
+public class CustomerQueue implements IntQueue {
     private IntLinkedNode head;
     private IntLinkedNode tail;
     int size;
 
-    public IntLinkedQueue()
+    public CustomerQueue()
     {
         head = null;
         tail = null;
@@ -44,10 +44,10 @@ public class IntLinkedQueue implements IntQueue {
     }
 
     @Override
-    public void enqueue(Integer obj) {
+    public void enqueue(CustomerRecord obj) {
         IntLinkedNode node = new IntLinkedNode(obj);
         if (tail != null) {
-            tail.setNext(node)
+            tail.setNext(node);
         }
         tail = node;
         if (head == null) {
@@ -57,11 +57,11 @@ public class IntLinkedQueue implements IntQueue {
     }
 
     @Override
-    public Integer dequeue() {
+    public CustomerRecord dequeue() {
         if (isEmpty()) {
             throw new IllegalStateException("empty queue");
         }
-        int val = head.getValue();
+        CustomerRecord val = head.getValue();
         head = head.getNext();
         if (head == null) {
             tail = null;
@@ -71,7 +71,7 @@ public class IntLinkedQueue implements IntQueue {
     }
 
     @Override
-    public Integer peekFront() {
+    public CustomerRecord peekFront() {
         if (isEmpty()) {
             throw new IllegalStateException("empty queue");
         }
